@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weather_app/bootstrap.dart';
 import 'package:weather_app/const/app_urls.dart';
 import 'package:weather_app/shared/api_client/dio/bad_certificate_fixer.dart';
-import 'package:weather_app/shared/api_client/dio/default_api_interceptor.dart';
 import 'package:weather_app/shared/api_client/dio/default_time_response_interceptor.dart';
 import 'package:weather_app/shared/api_client/dio/form_data_interceptor.dart';
 import 'package:talker_dio_logger/talker_dio_logger.dart';
