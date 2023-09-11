@@ -22,6 +22,7 @@ dependencies:
   hive_flutter: ^1.1.0
   internet_connection_checker: ^1.0.0+1
   intl: ^0.18.0
+  multiple_result: ^5.1.0
   path_provider: ^2.1.0
   platform_info: ^4.0.2
   # Downgraded to 0.2.0 from 1.1.0 due to
