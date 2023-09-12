@@ -25,7 +25,7 @@ class ThemeModeController extends AutoDisposeNotifier<ThemeMode> {
       }
       return ThemeMode.system;
     }
-    return ThemeMode.system;
+    return ThemeMode.dark;
   }
 
   Future<void> changeTheme(ThemeMode theme) async {
