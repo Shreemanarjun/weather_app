@@ -10,6 +10,12 @@ class AppRouter extends $AppRouter {
       page: WeatherRoute.page,
       path: '/',
       initial: true,
+      children: [
+        AutoRoute(
+          page: NextDailyForecastRoute.page,
+          path: 'nextForeCast',
+        ),
+      ],
     ),
   ];
 }
