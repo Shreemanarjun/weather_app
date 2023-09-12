@@ -13,16 +13,19 @@ class WeatherRepository implements IWeatherRepository {
   WeatherRepository({required this.dio, required this.apiKey});
 
   @override
-  Future<Result<NextForeCastModel, APIException>> fetchWeatherData(
-      String latitude, String longitude) async {
-    final result = await dio.get(
-      AppUrls.nextForecast,
-      queryParameters: {
-        "lat": "20.844402",
-        "lon": "85.151085",
-        "appid": apiKey
-      },
-    );
+  Future<Result<NextForeCastModel, APIException>> fetchWeatherData({
+    required String latitude,
+    required String longitude,
+    required CancelToken cancelToken,
+  }) async {
+    final result = await dio.get(AppUrls.nextForecast,
+        queryParameters: {
+          "lat": "20.844402",
+          "lon": "85.151085",
+          "units": "metric",
+          "appid": apiKey,
+        },
+        cancelToken: cancelToken);
     if (result.statusCode == 200) {
       return Success(NextForeCastModel.fromMap(result.data));
     } else {
