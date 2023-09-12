@@ -1,10 +1,12 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
+
 class NextForeCastModel {
   final String cod;
   final int message;
   final int cnt;
-  final List<ListElement> list;
+  final List<WeatherInfo> list;
   final City city;
 
   NextForeCastModel({
@@ -25,8 +27,8 @@ class NextForeCastModel {
         cod: json["cod"],
         message: json["message"],
         cnt: json["cnt"],
-        list: List<ListElement>.from(
-            json["list"].map((x) => ListElement.fromMap(x))),
+        list: List<WeatherInfo>.from(
+            json["list"].map((x) => WeatherInfo.fromMap(x))),
         city: City.fromMap(json["city"]),
       );
 
@@ -37,6 +39,32 @@ class NextForeCastModel {
         "list": List<dynamic>.from(list.map((x) => x.toMap())),
         "city": city.toMap(),
       };
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is NextForeCastModel &&
+        other.cod == cod &&
+        other.message == message &&
+        other.cnt == cnt &&
+        listEquals(other.list, list) &&
+        other.city == city;
+  }
+
+  @override
+  int get hashCode {
+    return cod.hashCode ^
+        message.hashCode ^
+        cnt.hashCode ^
+        list.hashCode ^
+        city.hashCode;
+  }
+
+  @override
+  String toString() {
+    return 'NextForeCastModel(cod: $cod, message: $message, cnt: $cnt, list: $list, city: $city)';
+  }
 }
 
 class City {
@@ -85,6 +113,38 @@ class City {
         "sunrise": sunrise,
         "sunset": sunset,
       };
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is City &&
+        other.id == id &&
+        other.name == name &&
+        other.coord == coord &&
+        other.country == country &&
+        other.population == population &&
+        other.timezone == timezone &&
+        other.sunrise == sunrise &&
+        other.sunset == sunset;
+  }
+
+  @override
+  int get hashCode {
+    return id.hashCode ^
+        name.hashCode ^
+        coord.hashCode ^
+        country.hashCode ^
+        population.hashCode ^
+        timezone.hashCode ^
+        sunrise.hashCode ^
+        sunset.hashCode;
+  }
+
+  @override
+  String toString() {
+    return 'City(id: $id, name: $name, coord: $coord, country: $country, population: $population, timezone: $timezone, sunrise: $sunrise, sunset: $sunset)';
+  }
 }
 
 class Coord {
@@ -109,9 +169,22 @@ class Coord {
         "lat": lat,
         "lon": lon,
       };
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is Coord && other.lat == lat && other.lon == lon;
+  }
+
+  @override
+  int get hashCode => lat.hashCode ^ lon.hashCode;
+
+  @override
+  String toString() => 'Coord(lat: $lat, lon: $lon)';
 }
 
-class ListElement {
+class WeatherInfo {
   final int dt;
   final Main main;
   final List<Weather> weather;
@@ -123,7 +196,7 @@ class ListElement {
   final DateTime dtTxt;
   final Rain? rain;
 
-  ListElement({
+  WeatherInfo({
     required this.dt,
     required this.main,
     required this.weather,
@@ -136,12 +209,12 @@ class ListElement {
     this.rain,
   });
 
-  factory ListElement.fromJson(String str) =>
-      ListElement.fromMap(json.decode(str));
+  factory WeatherInfo.fromJson(String str) =>
+      WeatherInfo.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory ListElement.fromMap(Map<String, dynamic> json) => ListElement(
+  factory WeatherInfo.fromMap(Map<String, dynamic> json) => WeatherInfo(
         dt: json["dt"],
         main: Main.fromMap(json["main"]),
         weather:
@@ -167,6 +240,42 @@ class ListElement {
         "dt_txt": dtTxt.toIso8601String(),
         "rain": rain?.toMap(),
       };
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is WeatherInfo &&
+        other.dt == dt &&
+        other.main == main &&
+        listEquals(other.weather, weather) &&
+        other.clouds == clouds &&
+        other.wind == wind &&
+        other.visibility == visibility &&
+        other.pop == pop &&
+        other.sys == sys &&
+        other.dtTxt == dtTxt &&
+        other.rain == rain;
+  }
+
+  @override
+  int get hashCode {
+    return dt.hashCode ^
+        main.hashCode ^
+        weather.hashCode ^
+        clouds.hashCode ^
+        wind.hashCode ^
+        visibility.hashCode ^
+        pop.hashCode ^
+        sys.hashCode ^
+        dtTxt.hashCode ^
+        rain.hashCode;
+  }
+
+  @override
+  String toString() {
+    return 'WeatherInfo(dt: $dt, main: $main, weather: $weather, clouds: $clouds, wind: $wind, visibility: $visibility, pop: $pop, sys: $sys, dtTxt: $dtTxt, rain: $rain)';
+  }
 }
 
 class Clouds {
@@ -187,6 +296,19 @@ class Clouds {
   Map<String, dynamic> toMap() => {
         "all": all,
       };
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is Clouds && other.all == all;
+  }
+
+  @override
+  int get hashCode => all.hashCode;
+
+  @override
+  String toString() => 'Clouds(all: $all)';
 }
 
 class Main {
@@ -239,6 +361,40 @@ class Main {
         "humidity": humidity,
         "temp_kf": tempKf,
       };
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is Main &&
+        other.temp == temp &&
+        other.feelsLike == feelsLike &&
+        other.tempMin == tempMin &&
+        other.tempMax == tempMax &&
+        other.pressure == pressure &&
+        other.seaLevel == seaLevel &&
+        other.grndLevel == grndLevel &&
+        other.humidity == humidity &&
+        other.tempKf == tempKf;
+  }
+
+  @override
+  int get hashCode {
+    return temp.hashCode ^
+        feelsLike.hashCode ^
+        tempMin.hashCode ^
+        tempMax.hashCode ^
+        pressure.hashCode ^
+        seaLevel.hashCode ^
+        grndLevel.hashCode ^
+        humidity.hashCode ^
+        tempKf.hashCode;
+  }
+
+  @override
+  String toString() {
+    return 'Main(temp: $temp, feelsLike: $feelsLike, tempMin: $tempMin, tempMax: $tempMax, pressure: $pressure, seaLevel: $seaLevel, grndLevel: $grndLevel, humidity: $humidity, tempKf: $tempKf)';
+  }
 }
 
 class Rain {
@@ -259,6 +415,19 @@ class Rain {
   Map<String, dynamic> toMap() => {
         "3h": the3H,
       };
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is Rain && other.the3H == the3H;
+  }
+
+  @override
+  int get hashCode => the3H.hashCode;
+
+  @override
+  String toString() => 'Rain(the3H: $the3H)';
 }
 
 class Sys {
@@ -279,6 +448,19 @@ class Sys {
   Map<String, dynamic> toMap() => {
         "pod": pod,
       };
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is Sys && other.pod == pod;
+  }
+
+  @override
+  int get hashCode => pod.hashCode;
+
+  @override
+  String toString() => 'Sys(pod: $pod)';
 }
 
 class Weather {
@@ -311,6 +493,27 @@ class Weather {
         "description": description,
         "icon": icon,
       };
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is Weather &&
+        other.id == id &&
+        other.main == main &&
+        other.description == description &&
+        other.icon == icon;
+  }
+
+  @override
+  int get hashCode {
+    return id.hashCode ^ main.hashCode ^ description.hashCode ^ icon.hashCode;
+  }
+
+  @override
+  String toString() {
+    return 'Weather(id: $id, main: $main, description: $description, icon: $icon)';
+  }
 }
 
 class Wind {
@@ -339,4 +542,20 @@ class Wind {
         "deg": deg,
         "gust": gust,
       };
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is Wind &&
+        other.speed == speed &&
+        other.deg == deg &&
+        other.gust == gust;
+  }
+
+  @override
+  int get hashCode => speed.hashCode ^ deg.hashCode ^ gust.hashCode;
+
+  @override
+  String toString() => 'Wind(speed: $speed, deg: $deg, gust: $gust)';
 }
