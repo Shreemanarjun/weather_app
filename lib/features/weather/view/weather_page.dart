@@ -13,6 +13,7 @@ class WeatherPage extends StatelessWidget {
     return AutoTabsRouter.tabBar(
         routes: const [
           NextDailyForecastRoute(),
+          MapDataRoute(),
         ],
         builder: (context, child, controller) {
           return Scaffold(
@@ -26,6 +27,11 @@ class WeatherPage extends StatelessWidget {
                       text: 'Daily forecast for next 5 days',
                       icon: Icon(
                         Icons.event_available,
+                      )),
+                  Tab(
+                      text: 'Precipitation and temperature',
+                      icon: Icon(
+                        Icons.map_sharp,
                       )),
                 ],
               ),

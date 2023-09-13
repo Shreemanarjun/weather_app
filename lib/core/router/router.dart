@@ -15,6 +15,10 @@ class AppRouter extends $AppRouter {
           page: NextDailyForecastRoute.page,
           path: 'nextForeCast',
         ),
+        AutoRoute(
+          page: MapDataRoute.page,
+          path: 'nextForeCast',
+        ),
       ],
     ),
   ];
