@@ -33,7 +33,8 @@ class NextForeCastNotifier extends AutoDisposeAsyncNotifier<NextForeCastState> {
       result.when((nextforecastmodel) {
         state = AsyncData(ForeCastData(nextForeCastModel: nextforecastmodel));
       }, (error) {
-        state = AsyncData(ForeCastError(error: error.errorMessage));
+        state =
+            AsyncData(ForeCastError(error: error.errorMessage));
       });
     }
   }

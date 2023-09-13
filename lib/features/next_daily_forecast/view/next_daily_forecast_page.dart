@@ -27,7 +27,10 @@ class NextDailyForecastPage extends ConsumerWidget {
               alignment: MainAxisAlignment.center,
             ),
           LocationError(:final error) => [
-              "Failed to get your location due to $error".text.makeCentered(),
+              "Failed to get your location due to $error"
+                  .text
+                  .center
+                  .makeCentered(),
               ElevatedButton(
                 onPressed: () {
                   ref.invalidate(nextForeCastPod);
@@ -50,11 +53,32 @@ class NextDailyForecastPage extends ConsumerWidget {
               ),
               NextForecastList(nextForeCastModel: nextForeCastModel).expand(),
             ].vStack(),
-          ForeCastError() => "Failed to get forecast data".text.makeCentered(),
+          ForeCastError(:final error) => [
+              " $error".text.center.makeCentered(),
+              ElevatedButton(
+                onPressed: () {
+                  ref.invalidate(nextForeCastPod);
+                },
+                child: "Retry".text.make(),
+              ).p8()
+            ].vStack(
+              alignment: MainAxisAlignment.center,
+              crossAlignment: CrossAxisAlignment.center,
+            ),
         };
       },
-      errorWidget: (error, stackTrace) =>
-          "Failed to get forecast data due to $error".text.makeCentered(),
+      errorWidget: (error, stackTrace) => [
+        "Failed to get forecast data due to $error".text.makeCentered(),
+        ElevatedButton(
+          onPressed: () {
+            ref.invalidate(nextForeCastPod);
+          },
+          child: "Retry".text.make(),
+        ).p8()
+      ].vStack(
+        alignment: MainAxisAlignment.center,
+      ),
+      includedefaultDioErrorMessage: true,
     );
   }
 }
