@@ -21,7 +21,6 @@ class WeatherTile extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
           width: 2,
-          color: context.colors.onSurface,
         ),
       ),
       child: <Widget>[
@@ -37,23 +36,14 @@ class WeatherTile extends StatelessWidget {
               "https://openweathermap.org/img/wn/${weatherInfo.weather.first.icon}@2x.png",
           errorWidget: (context, url, error) => const SizedBox.shrink(),
         ).flexible(flex: 2),
-        RichText(
-          text: "Feels ".textSpan.withChildren([
-            "${weatherInfo.main.feelsLike.toInt()}".textSpan.bold.make(),
-            " \u00B0C".textSpan.bold.make(),
-          ]).make(),
-        ).py4().flexible(),
+        "Feels ${weatherInfo.main.feelsLike.toInt()}  \u00B0C"
+            .text
+            .make()
+            .py4()
+            .flexible(),
         <Widget>[
           const Icon(Icons.air),
-          RichText(
-            text: "${weatherInfo.wind.speed}"
-                .textSpan
-                .withChildren([
-                  " m/s".textSpan.make(),
-                ])
-                .semiBold
-                .make(),
-          ).py4(),
+          "${weatherInfo.wind.speed}   m/s".text.semiBold.make().py4(),
         ]
             .hStack(
               alignment: MainAxisAlignment.center,
