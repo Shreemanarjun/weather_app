@@ -7,9 +7,13 @@ class AppRouter extends $AppRouter {
   @override
   late final List<AutoRoute> routes = [
     AutoRoute(
-      page: WeatherRoute.page,
+      page: ApiKeyRoute.page,
       path: '/',
       initial: true,
+    ),
+    AutoRoute(
+      page: WeatherRoute.page,
+      path: '/weather',
       children: [
         AutoRoute(
           page: NextDailyForecastRoute.page,
