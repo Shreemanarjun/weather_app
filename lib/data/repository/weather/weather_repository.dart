@@ -20,8 +20,8 @@ class WeatherRepository implements IWeatherRepository {
   }) async {
     final result = await dio.get(AppUrls.nextForecast,
         queryParameters: {
-          "lat": "20.844402",
-          "lon": "85.151085",
+          "lat": latitude,
+          "lon": longitude,
           "units": "metric",
           "appid": apiKey,
         },
