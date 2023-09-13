@@ -53,7 +53,7 @@ void main() {
       ],
     );
     testAsyncNotifier(
-      "shoud be data",
+      "shoud be Forecast data as success",
       overrides: [
         weatherRepoPod.overrideWithValue(weatherRepo),
       ],
@@ -109,7 +109,25 @@ void main() {
         isA<AsyncData>().having(
           (s) => s.value,
           "state is GettingLocation",
-          isA<ForeCastData>(),
+          isA<ForeCastData>().having(
+              (s) => s.nextForeCastModel,
+              "same forecast",
+              equals(NextForeCastModel(
+                cod: "cod",
+                message: 200,
+                cnt: 5,
+                list: [],
+                city: City(
+                  id: 1,
+                  name: "name",
+                  coord: Coord(lat: 22.00, lon: 84.0),
+                  country: "India",
+                  population: 2000,
+                  timezone: 5,
+                  sunrise: 6,
+                  sunset: 7,
+                ),
+              ))),
         ),
       ],
     );
