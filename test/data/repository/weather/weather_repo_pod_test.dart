@@ -107,8 +107,8 @@ void main() {
         dioAdapter.onGet(
           AppUrls.nextForecast,
           (server) => server.reply(
-            400,
-            {"errorMessage": "Bad request"},
+            406,
+            {"message": "Bad request"},
             // Reply would wait for one-sec before returning data.
             delay: const Duration(seconds: 1),
           ),

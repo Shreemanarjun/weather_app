@@ -1,5 +1,6 @@
 import 'package:dio/io.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:weather_app/shared/api_client/dio/default_api_interceptor.dart';
 import 'package:weather_app/shared/api_client/dio/default_time_response_interceptor.dart';
 import 'package:weather_app/shared/api_client/dio/dio_client_provider.dart';
 import 'package:weather_app/shared/api_client/dio/form_data_interceptor.dart';
@@ -14,13 +15,13 @@ void main() {
       isA<DioForNative>()
           .having(
             (d) => d.options.baseUrl,
-            'default interceptor should be 2',
+            'default url',
             equals("http://api.openweathermap.org/data/2.5/"),
           )
           .having(
             (d) => d.interceptors.length,
             "Interceptors should be 5",
-            equals(4),
+            equals(5),
           )
           .having(
               (d) => d.interceptors,
@@ -30,6 +31,7 @@ void main() {
                   isA<TimeResponseInterceptor>(),
                   isA<FormDataInterceptor>(),
                   isA<TalkerDioLogger>(),
+                  isA<DefaultAPIInterceptor>()
                 ],
               )),
     ],
