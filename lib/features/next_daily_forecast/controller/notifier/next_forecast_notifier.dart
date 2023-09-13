@@ -5,7 +5,6 @@ import 'package:geolocator/geolocator.dart';
 import 'package:weather_app/data/repository/weather/weather_repo_pod.dart';
 import 'package:weather_app/features/next_daily_forecast/state/next_forecast_state.dart';
 import 'package:weather_app/shared/pods/location/pod/location_acess_pod.dart';
-import 'package:weather_app/shared/riverpod_ext/cache_extensions.dart';
 import 'package:weather_app/shared/riverpod_ext/cancel_extensions.dart';
 
 class NextForeCastNotifier extends AutoDisposeAsyncNotifier<NextForeCastState> {
@@ -32,7 +31,6 @@ class NextForeCastNotifier extends AutoDisposeAsyncNotifier<NextForeCastState> {
             cancelToken: ref.cancelToken(),
           );
       result.when((nextforecastmodel) {
-        ref.cacheFor(const Duration(seconds: 5));
         state = AsyncData(ForeCastData(nextForeCastModel: nextforecastmodel));
       }, (error) {
         state = AsyncData(ForeCastError(error: error.errorMessage));
