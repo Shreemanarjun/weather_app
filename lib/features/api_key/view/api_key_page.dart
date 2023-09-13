@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:weather_app/core/router/router.gr.dart';
+import 'package:weather_app/shared/helper/global_helper.dart';
 import 'package:weather_app/shared/pods/api_key_pod.dart';
 
 @RoutePage(
@@ -15,7 +16,7 @@ class ApiKeyPage extends ConsumerStatefulWidget {
   ConsumerState<ApiKeyPage> createState() => _ApiKeyPageState();
 }
 
-class _ApiKeyPageState extends ConsumerState<ApiKeyPage> {
+class _ApiKeyPageState extends ConsumerState<ApiKeyPage> with GlobalHelper {
   final textcontroller = TextEditingController();
 
   @override
@@ -49,9 +50,10 @@ class _ApiKeyPageState extends ConsumerState<ApiKeyPage> {
                   .read(apiKeyPod.notifier)
                   .update((state) => textcontroller.value.text);
             }
+            hideKeyboard();
             context.navigateTo(const WeatherRoute());
           },
-          child: "Set key".text.make(),
+          child: "Set key to continue ".text.make(),
         ).p8()
       ]
           .vStack(
