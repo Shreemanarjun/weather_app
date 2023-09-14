@@ -13,6 +13,10 @@
 
 
 
+## Download
+
+[Download Weather App ](https://github.com/Shreemanarjun/weather_app/releases/latest)
+
 ## Installation 🛠️
 
 To get started with Flutter Sharez, follow these steps:
