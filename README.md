@@ -24,7 +24,7 @@ To get started with Flutter Sharez, follow these steps:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/Shreemanarjun/flutter_sharez.git
+   git clone https://github.com/Shreemanarjun/weather_app.git
    ```
 
 2. Navigate to the project directory:
