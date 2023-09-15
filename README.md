@@ -30,7 +30,7 @@ To get started with Flutter Sharez, follow these steps:
 2. Navigate to the project directory:
 
    ```bash
-   cd flutter_sharez
+   cd weather_app
    ```
 
 3. Install dependencies:
