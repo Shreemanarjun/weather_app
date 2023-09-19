@@ -51,7 +51,7 @@ class WeatherTile extends StatelessWidget {
             )
             .flexible(),
         const Spacer(),
-        DateFormat("hh:MM a")
+        DateFormat("hh:mm a")
             .format(weatherInfo.dtTxt)
             .toString()
             .text
